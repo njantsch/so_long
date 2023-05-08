@@ -6,13 +6,13 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:33:32 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/05 17:21:50 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:17:44 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	len_gnl(const char *s)
 {
 	int	i;
 
@@ -26,18 +26,18 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc_gnl(size_t count, size_t size)
 {
 	void	*ptr;
 
 	ptr = malloc(count * size);
 	if (ptr == NULL)
 		return (NULL);
-	ft_bzero(ptr, size * count);
+	ft_bzero_gnl(ptr, size * count);
 	return (ptr);
 }
 
-void	ft_bzero(void *s, size_t n)
+void	ft_bzero_gnl(void *s, size_t n)
 {
 	size_t			i;
 	unsigned char	*ptr;
@@ -75,7 +75,7 @@ char	*ft_strjoin_free(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	res = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
+	res = ft_calloc_gnl(len_gnl(s1) + len_gnl(s2) + 1, sizeof(char));
 	if (!res)
 		return (free(s1), NULL);
 	while (s1 && s1[i])

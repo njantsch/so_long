@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:57:29 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/05 17:22:03 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/08 14:17:18 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*buff_trim(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	new = ft_calloc((ft_strlen(buffer) + 1) - i, sizeof(char));
+	new = ft_calloc_gnl((len_gnl(buffer) + 1) - i, sizeof(char));
 	if (!new)
 		return (NULL);
 	i++;
@@ -51,7 +51,7 @@ static char	*get_line(char *buffer)
 		i++;
 	if (buffer[i] == '\n')
 		i++;
-	new = ft_calloc(i + 1, sizeof(char));
+	new = ft_calloc_gnl(i + 1, sizeof(char));
 	if (!new)
 		return (NULL);
 	i = 0;
@@ -68,7 +68,7 @@ char	*read_loop(int fd, char *buffer)
 	char	*new_buff;
 	int		bytes_read;
 
-	new_buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	new_buff = ft_calloc_gnl(BUFFER_SIZE + 1, sizeof(char));
 	if (!new_buff)
 		return (NULL);
 	bytes_read = 1;

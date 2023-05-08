@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:56:29 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/05 19:23:57 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/08 20:06:02 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ int main(int argc, char **argv)
 	else if (argc > 2)
 		return (ft_printf("Error\n too many arguments\n"));
 	if (valid_map_check(argv[1]) == 1)
-		return (ft_printf("Error\n map is not valid\n"));
+		return (ft_printf("Error\nmap is not valid\n"));
+
 }
