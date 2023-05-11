@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:48:22 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/08 18:47:24 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/09 13:15:30 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_map_format(char *map)
 	int	i;
 
 	i = ft_strlen(map);
-	while (i > 0)
+	while (i >= 0)
 	{
 		if (map[i] == '.')
 		{
@@ -42,6 +42,7 @@ int	check_first_a_last_wall(char *line)
 	{
 		if (line[i] != '1')
 			return (1);
+
 		i++;
 	}
 	return (0);
@@ -81,8 +82,8 @@ int	check_chars(char **lines)
 // and if the walls are valid.
 int	check_walls_a_others(char **lines)
 {
-	size_t	x;
-	size_t	y;
+	int	x;
+	int	y;
 
 	y = -1;
 	while (lines[++y] != NULL)
@@ -107,7 +108,7 @@ int	check_walls_a_others(char **lines)
 	return (0);
 }
 
-int	valid_map_check(char *map)
+char	**valid_map_check(char *map)
 {
 	int		fd;
 	char	*map_input;
@@ -116,6 +117,8 @@ int	valid_map_check(char *map)
 
 	map_input = ft_calloc(1, 1);
 	fd = open(map, O_RDONLY);
+	if (fd < 0)
+		return (NULL);
 	get_line = get_next_line(fd);
 	while (get_line != NULL)
 	{
@@ -124,12 +127,11 @@ int	valid_map_check(char *map)
 		get_line = get_next_line(fd);
 	}
 	if (check_consec_nl(map_input))
-		return (1);
+		return (NULL);
 	lines = ft_split(map_input, '\n');
 	free(map_input);
 	if (map_checks(lines, map) == 1)
-		return (1);
-	free_prev_alloc(lines);
+		return (NULL);
 	close(fd);
-	return (0);
+	return (lines);
 }

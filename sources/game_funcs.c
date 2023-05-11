@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   game_funcs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 13:14:22 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/09 13:16:21 by njantsch         ###   ########.fr       */
+/*   Created: 2023/05/09 13:06:22 by njantsch          #+#    #+#             */
+/*   Updated: 2023/05/11 17:53:17 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_prev_alloc(char **buff)
+t_game	*initialize_game(char **map)
 {
-	size_t	j;
+	t_game	*game;
+	int		i;
 
-	j = 0;
-	while (buff[j] != NULL)
-	{
-		free(buff[j]);
-		j++;
-	}
-	free(buff);
+	i = 0;
+	game = malloc(sizeof(t_game));
+	game->x = ft_strlen(map[0]) * 50;
+	while (map[i] != NULL)
+		i++;
+	game->y = i * 50;
+	return (game);
 }
+
+void	ft_get_textures(t_game game, char **)
+
+void	ft_hook(mlx_key_data_t keydata)
+{
+	if ()
+
+}
+

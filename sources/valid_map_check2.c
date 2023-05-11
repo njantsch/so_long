@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:50:21 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/08 18:46:21 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:13:50 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	map_checks(char **lines, char *map)
 	return (0);
 }
 
+// Checks if there are consecutive new lines inside the map
 int	check_consec_nl(char *line_str)
 {
 	int	i;

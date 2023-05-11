@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:08:50 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/08 19:51:56 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:16:06 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@
 
 typedef struct	game
 {
-	int		width;
-	int		height;
+	mlx_t	*mlx;
+	int		x;
+	int		y;
 
 }	t_game;
-int		valid_map_check(char *map);
+t_game	*initialize_game(char **map);
+char	**valid_map_check(char *map);
 int		check_map_format(char *map);
 int		check_walls_a_others(char **lines);
 int		check_chars(char **lines);

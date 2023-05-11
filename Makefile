@@ -3,7 +3,7 @@ CFLAGS = -Wall -Werror -Wextra
 USER = $(shell whoami)
 NAME = so_long
 
-SOURCES = ./sources/so_long.c ./sources/valid_map_check.c ./sources/valid_map_check2.c ./sources/utils.c
+SOURCES = ./sources/so_long.c ./sources/valid_map_check.c ./sources/valid_map_check2.c ./sources/utils.c ./sources/game_funcs.c
 
 MLXFLAGS = -framework Cocoa -framework OpenGL -framework IOKit -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
