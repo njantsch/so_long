@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:50:21 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/09 12:13:50 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/12 18:29:50 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,17 @@ int	check_consec_nl(char *line_str)
 		i++;
 	}
 	return (0);
+}
+
+void	free_prev_alloc(char **buff)
+{
+	size_t	j;
+
+	j = 0;
+	while (buff[j] != NULL)
+	{
+		free(buff[j]);
+		j++;
+	}
+	free(buff);
 }

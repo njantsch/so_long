@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:56:29 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/11 17:32:11 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/12 18:48:31 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ int main(int argc, char **argv)
 	if (map == NULL)
 		return (ft_printf("Error\nmap is not valid\n"));
 	game = initialize_game(map);
-	game->mlx = mlx_init(game->x, game->y, "Bruh", false);
+	game->mlx = mlx_init(game->x, game->y, "so_long", false);
 	if (!game->mlx)
 		return (ft_printf("%s", mlx_strerror(mlx_errno)));
-	ft_hook(game->mlx, ft_hook, game);
+
+	ft_get_textures(game);
+	mlx_loop_hook(game->mlx, ft_hooks, game);
+	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
 	return (EXIT_SUCCESS);
 }

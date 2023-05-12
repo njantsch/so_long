@@ -6,21 +6,10 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:14:22 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/09 13:16:21 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/12 18:29:43 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_prev_alloc(char **buff)
-{
-	size_t	j;
 
-	j = 0;
-	while (buff[j] != NULL)
-	{
-		free(buff[j]);
-		j++;
-	}
-	free(buff);
-}
