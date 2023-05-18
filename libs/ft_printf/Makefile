@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 NAME = libftprintf.a
 
 SOURCES = ft_printf.c ft_num_in_hex.c ft_print_unsigned.c \

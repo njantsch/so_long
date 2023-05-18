@@ -1,10 +1,10 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 USER = $(shell whoami)
 NAME = so_long
 
 SOURCES = ./sources/so_long.c ./sources/valid_map_check.c ./sources/valid_map_check2.c ./sources/utils.c ./sources/game_funcs.c \
-		./sources/game_hooks.c
+		./sources/game_hooks.c ./sources/graphics.c ./sources/movement.c
 
 MLXFLAGS = -framework Cocoa -framework OpenGL -framework IOKit -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
@@ -19,7 +19,7 @@ $(NAME) : $(OBJECTS)
 
 MLX42: brew-install
 	@if [ ! -d "MLX42" ]; then git clone https://github.com/codam-coding-college/MLX42.git; fi
-	@cd MLX42 && cmake -B build && cmake --build build -j4
+	@cd MLX42 && cmake -DDEBUG=1 -B build && cmake --build build -j4
 
 brew-install:
 	@if ! command -v brew >/dev/null ; then \

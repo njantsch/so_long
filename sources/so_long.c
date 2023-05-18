@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:56:29 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/12 18:48:31 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:33:58 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(int argc, char **argv)
 {
-	char 	**map;
+	char	**map;
 	t_game	*game;
 
 	if (argc == 1)
@@ -28,10 +28,12 @@ int main(int argc, char **argv)
 	game->mlx = mlx_init(game->x, game->y, "so_long", false);
 	if (!game->mlx)
 		return (ft_printf("%s", mlx_strerror(mlx_errno)));
-
+	get_coordinates(game);
 	ft_get_textures(game);
+	game->move = 1;
 	mlx_loop_hook(game->mlx, ft_hooks, game);
 	mlx_loop(game->mlx);
-	mlx_terminate(game->mlx);
+	free_prev_alloc(map);
+	terminate(game);
 	return (EXIT_SUCCESS);
 }
