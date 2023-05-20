@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra
 USER = $(shell whoami)
 NAME = so_long
 
@@ -19,7 +19,7 @@ $(NAME) : $(OBJECTS)
 
 MLX42: brew-install
 	@if [ ! -d "MLX42" ]; then git clone https://github.com/codam-coding-college/MLX42.git; fi
-	@cd MLX42 && cmake -DDEBUG=1 -B build && cmake --build build -j4
+	@cd MLX42 && cmake -B build && cmake --build build -j4
 
 brew-install:
 	@if ! command -v brew >/dev/null ; then \

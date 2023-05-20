@@ -6,16 +6,16 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:56:29 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/18 17:33:58 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/20 19:37:13 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	char	**map;
-	t_game	*game;
+	t_game	*g;
 
 	if (argc == 1)
 		return (ft_printf("Error\n not enough arguments\n"));
@@ -24,16 +24,15 @@ int main(int argc, char **argv)
 	map = valid_map_check(argv[1]);
 	if (map == NULL)
 		return (ft_printf("Error\nmap is not valid\n"));
-	game = initialize_game(map);
-	game->mlx = mlx_init(game->x, game->y, "so_long", false);
-	if (!game->mlx)
+	g = initialize_game(map);
+	g->mlx = mlx_init(g->x, g->y, "so_long", false);
+	if (!g->mlx)
 		return (ft_printf("%s", mlx_strerror(mlx_errno)));
-	get_coordinates(game);
-	ft_get_textures(game);
-	game->move = 1;
-	mlx_loop_hook(game->mlx, ft_hooks, game);
-	mlx_loop(game->mlx);
+	get_coordinates(g);
+	ft_get_textures(g);
+	mlx_loop_hook(g->mlx, ft_hooks, g);
+	mlx_loop(g->mlx);
 	free_prev_alloc(map);
-	terminate(game);
+	terminate(g);
 	return (EXIT_SUCCESS);
 }

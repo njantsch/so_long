@@ -6,32 +6,32 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:06:22 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/18 17:43:32 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/20 19:41:41 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	get_coordinates(t_game *game)
+void	get_coordinates(t_game *g)
 {
 	size_t		i;
 	size_t		j;
 
 	i = 0;
-	while(game->map[i])
+	while (g->map[i])
 	{
 		j = 0;
-		while (game->map[i][j])
+		while (g->map[i][j])
 		{
-			if (game->map[i][j] == 'P')
+			if (g->map[i][j] == 'P')
 			{
-				game->ply_x = j * DIMENS;
-				game->ply_y = i * DIMENS;
+				g->ply_x = j * DIMENS;
+				g->ply_y = i * DIMENS;
 			}
-			else if (game->map[i][j] == 'E')
+			else if (g->map[i][j] == 'E')
 			{
-				game->exit_x = j * DIMENS;
-				game->exit_y = i * DIMENS;
+				g->exit_x = j * DIMENS;
+				g->exit_y = i * DIMENS;
 			}
 			j++;
 		}
@@ -39,58 +39,58 @@ void	get_coordinates(t_game *game)
 	}
 }
 
-void	ft_get_textures(t_game *game)
+void	ft_get_textures(t_game *g)
 {
-	xpm_t	*xpm_standing_r;
+	xpm_t	*xpm_mario;
 	xpm_t	*xpm_wall;
-	xpm_t	*xpm_background;
-	xpm_t	*xpm_collectable;
+	xpm_t	*xpm_back_g;
+	xpm_t	*xpm_coll;
 	xpm_t	*xpm_exit;
 
 	xpm_wall = mlx_load_xpm42("./textures/Wall.xpm42");
-	game->wall = mlx_texture_to_image(game->mlx, &xpm_wall->texture);
-	xpm_standing_r = mlx_load_xpm42("./textures/Mario.xpm42");
-	game->standing_r = mlx_texture_to_image(game->mlx, &xpm_standing_r->texture);
-	xpm_collectable = mlx_load_xpm42("./textures/Collectable.xpm42");
-	game->collectable = mlx_texture_to_image(game->mlx, &xpm_collectable->texture);
-	xpm_background = mlx_load_xpm42("./textures/Background.xpm42");
-	game->background = mlx_texture_to_image(game->mlx, &xpm_background->texture);
+	g->wall = mlx_texture_to_image(g->mlx, &xpm_wall->texture);
+	xpm_mario = mlx_load_xpm42("./textures/Mario.xpm42");
+	g->mario = mlx_texture_to_image(g->mlx, &xpm_mario->texture);
+	xpm_coll = mlx_load_xpm42("./textures/Collectable.xpm42");
+	g->c = mlx_texture_to_image(g->mlx, &xpm_coll->texture);
+	xpm_back_g = mlx_load_xpm42("./textures/Background.xpm42");
+	g->back_g = mlx_texture_to_image(g->mlx, &xpm_back_g->texture);
 	xpm_exit = mlx_load_xpm42("./textures/Exit.xpm42");
-	game->exit = mlx_texture_to_image(game->mlx, &xpm_exit->texture);
-	ft_print_walls_and_back(game);
-	ft_coll(game);
-	game->tmp = game->coll_count;
-	mlx_image_to_window(game->mlx, game->exit, game->exit_x, game->exit_y);
-	mlx_image_to_window(game->mlx, game->standing_r, game->ply_x, game->ply_y);
+	g->exit = mlx_texture_to_image(g->mlx, &xpm_exit->texture);
+	ft_print_walls_and_back(g);
+	ft_coll(g);
+	g->tmp = g->coll_count;
+	mlx_image_to_window(g->mlx, g->exit, g->exit_x, g->exit_y);
+	mlx_image_to_window(g->mlx, g->mario, g->ply_x, g->ply_y);
+	g->m = mlx_put_string(g->mlx, "Movement: ", g->m_x, g->m_y);
 }
 
-void	ft_coll(t_game *game)
+void	ft_coll(t_game *g)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	game->coll_count = 0;
-	game->c_y = 0;
-	while (game->map[++i])
+	g->coll_count = 0;
+	g->c_y = 0;
+	while (g->map[++i])
 	{
 		j = -1;
-
-		game->c_x = 0;
-		while (game->map[i][++j])
+		g->c_x = 0;
+		while (g->map[i][++j])
 		{
-			if (game->map[i][j] == 'C')
+			if (g->map[i][j] == 'C')
 			{
-				mlx_image_to_window(game->mlx, game->collectable, game->c_x, game->c_y);
-				game->coll_count += 1;
+				mlx_image_to_window(g->mlx, g->c, g->c_x, g->c_y);
+				g->coll_count += 1;
 			}
-			game->c_x += DIMENS;
+			g->c_x += DIMENS;
 		}
-		game->c_y += DIMENS;
+		g->c_y += DIMENS;
 	}
 }
 
-void	ft_print_walls_and_back(t_game *game)
+void	ft_print_walls_and_back(t_game *g)
 {
 	int	i;
 	int	j;
@@ -99,16 +99,16 @@ void	ft_print_walls_and_back(t_game *game)
 
 	i = 0;
 	y = 0;
-	while (game->map[i])
+	while (g->map[i])
 	{
 		j = 0;
 		x = 0;
-		while (game->map[i][j])
+		while (g->map[i][j])
 		{
-			if (game->map[i][j] != '1')
-				mlx_image_to_window(game->mlx, game->background, x, y);
-			if (game->map[i][j] == '1')
-				mlx_image_to_window(game->mlx, game->wall, x, y);
+			if (g->map[i][j] != '1')
+				mlx_image_to_window(g->mlx, g->back_g, x, y);
+			if (g->map[i][j] == '1')
+				mlx_image_to_window(g->mlx, g->wall, x, y);
 			x += 50;
 			j++;
 		}

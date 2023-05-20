@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:48:22 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/09 13:15:30 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/20 19:34:46 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	check_first_a_last_wall(char *line)
 	{
 		if (line[i] != '1')
 			return (1);
-
 		i++;
 	}
 	return (0);
@@ -61,8 +60,8 @@ int	check_chars(char **lines)
 	count_p_e = 0;
 	while (lines[++i] != NULL)
 	{
-		j = 0;
-		while (lines[i][j])
+		j = -1;
+		while (lines[i][++j])
 		{
 			if (lines[i][j] == 'E')
 				count_p_e++;
@@ -70,7 +69,6 @@ int	check_chars(char **lines)
 				countc++;
 			if (lines[i][j] == 'P')
 				count_p_e++;
-			j++;
 		}
 	}
 	if (count_p_e != 2 || countc < 1)
