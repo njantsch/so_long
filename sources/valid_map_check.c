@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:48:22 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/20 19:34:46 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/21 14:08:48 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ char	**valid_map_check(char *map)
 	map_input = ft_calloc(1, 1);
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
-		return (NULL);
+		return (free(map_input), NULL);
 	get_line = get_next_line(fd);
 	while (get_line != NULL)
 	{
@@ -125,11 +125,11 @@ char	**valid_map_check(char *map)
 		get_line = get_next_line(fd);
 	}
 	if (check_consec_nl(map_input))
-		return (NULL);
+		return (free(map_input), NULL);
 	lines = ft_split(map_input, '\n');
 	free(map_input);
 	if (map_checks(lines, map) == 1)
-		return (NULL);
+		return (free_prev_alloc(lines), NULL);
 	close(fd);
 	return (lines);
 }
