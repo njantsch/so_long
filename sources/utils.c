@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:14:22 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/20 19:38:00 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/21 13:54:30 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	terminate(t_game *g)
 	mlx_delete_image(g->mlx, g->m);
 	mlx_close_window(g->mlx);
 	mlx_terminate(g->mlx);
+	free_prev_alloc(g->map);
 	free(g);
 	exit(0);
 }

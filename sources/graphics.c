@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:06:22 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/20 19:41:41 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/21 13:50:57 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,21 @@ void	get_coordinates(t_game *g)
 
 void	ft_get_textures(t_game *g)
 {
-	xpm_t	*xpm_mario;
-	xpm_t	*xpm_wall;
-	xpm_t	*xpm_back_g;
-	xpm_t	*xpm_coll;
-	xpm_t	*xpm_exit;
-
-	xpm_wall = mlx_load_xpm42("./textures/Wall.xpm42");
-	g->wall = mlx_texture_to_image(g->mlx, &xpm_wall->texture);
-	xpm_mario = mlx_load_xpm42("./textures/Mario.xpm42");
-	g->mario = mlx_texture_to_image(g->mlx, &xpm_mario->texture);
-	xpm_coll = mlx_load_xpm42("./textures/Collectable.xpm42");
-	g->c = mlx_texture_to_image(g->mlx, &xpm_coll->texture);
-	xpm_back_g = mlx_load_xpm42("./textures/Background.xpm42");
-	g->back_g = mlx_texture_to_image(g->mlx, &xpm_back_g->texture);
-	xpm_exit = mlx_load_xpm42("./textures/Exit.xpm42");
-	g->exit = mlx_texture_to_image(g->mlx, &xpm_exit->texture);
+	g->xpm_wall = mlx_load_xpm42("./textures/Wall.xpm42");
+	g->wall = mlx_texture_to_image(g->mlx, &g->xpm_wall->texture);
+	mlx_delete_xpm42(g->xpm_wall);
+	g->xpm_mario = mlx_load_xpm42("./textures/Mario.xpm42");
+	g->mario = mlx_texture_to_image(g->mlx, &g->xpm_mario->texture);
+	mlx_delete_xpm42(g->xpm_mario);
+	g->xpm_coll = mlx_load_xpm42("./textures/Collectable.xpm42");
+	g->c = mlx_texture_to_image(g->mlx, &g->xpm_coll->texture);
+	mlx_delete_xpm42(g->xpm_coll);
+	g->xpm_back_g = mlx_load_xpm42("./textures/Background.xpm42");
+	g->back_g = mlx_texture_to_image(g->mlx, &g->xpm_back_g->texture);
+	mlx_delete_xpm42(g->xpm_back_g);
+	g->xpm_exit = mlx_load_xpm42("./textures/Exit.xpm42");
+	g->exit = mlx_texture_to_image(g->mlx, &g->xpm_exit->texture);
+	mlx_delete_xpm42(g->xpm_exit);
 	ft_print_walls_and_back(g);
 	ft_coll(g);
 	g->tmp = g->coll_count;

@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:08:50 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/20 19:33:58 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/21 13:46:58 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ typedef struct game
 	mlx_image_t	*mario;
 	mlx_image_t	*put_count;
 	mlx_image_t	*m;
+	xpm_t		*xpm_mario;
+	xpm_t		*xpm_wall;
+	xpm_t		*xpm_back_g;
+	xpm_t		*xpm_coll;
+	xpm_t		*xpm_exit;
 }	t_game;
 
 typedef struct fill
