@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -Wno-gnu-include-next -I/Users/njantsch/Documents/so_long/LeakSanitizer/include
+CFLAGS = -Wall -Werror -Wextra
 USER = $(shell whoami)
 NAME = so_long
 
@@ -15,7 +15,7 @@ all: MLX42 $(NAME)
 
 $(NAME) : $(OBJECTS)
 	@cd libs && make
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) ./libs/libs.a ./MLX42/build/libmlx42.a $(MLXFLAGS) -L/Users/njantsch/Documents/so_long/LeakSanitizer -llsan -lc++
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) ./libs/libs.a ./MLX42/build/libmlx42.a $(MLXFLAGS)
 
 MLX42: brew-install
 	@if [ ! -d "MLX42" ]; then git clone https://github.com/codam-coding-college/MLX42.git; fi
