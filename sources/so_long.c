@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:56:29 by njantsch          #+#    #+#             */
-/*   Updated: 2023/05/21 14:10:31 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/05/21 16:02:25 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	main(int argc, char **argv)
 	ft_get_textures(g);
 	mlx_loop_hook(g->mlx, ft_hooks, g);
 	mlx_loop(g->mlx);
-	free_prev_alloc(map);
 	terminate(g);
 	return (EXIT_SUCCESS);
 }
